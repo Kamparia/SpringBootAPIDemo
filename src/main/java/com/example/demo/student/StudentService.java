@@ -29,7 +29,8 @@ public class StudentService {
 
         // throw an exception if the student is not found
         if (student.isEmpty()) {
-            throw new IllegalStateException("Student with id " + studentId + " is not found.");
+            throw new IllegalStateException(
+                    "Student with id " + studentId + " is not found.");
         }
 
         // return the student
@@ -43,7 +44,8 @@ public class StudentService {
 
         // throw an exception if the student with email already in the database
         if (studentByEmail.isPresent()) {
-            throw new IllegalStateException("Email " + student.getEmail() + " is already taken.");
+            throw new IllegalStateException(
+                    "Email " + student.getEmail() + " is already taken.");
         }
 
         // save the student to the database
@@ -51,12 +53,10 @@ public class StudentService {
     }
 
     public void deleteStudent(Long studentId) {
-        // find the student by id
-        boolean exists = studentRepository.existsById(studentId);
-
         // throw an exception if the student is not found
-        if (!exists) {
-            throw new IllegalStateException("Student with id " + studentId + " is not found.");
+        if (!studentRepository.existsById(studentId)) {
+            throw new IllegalStateException(
+                    "Student with id " + studentId + " is not found.");
         }
 
         // delete the student from the database
